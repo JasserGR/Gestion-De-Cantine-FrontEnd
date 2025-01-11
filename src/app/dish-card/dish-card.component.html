@@ -32,15 +32,9 @@
     </button>
   </div>
   <div *ngIf="attribut === 'rating'" class="dish-rating">
-    <span
-      *ngFor="let star of stars"
-      [ngClass]="{
-        filled: star <= rating,
-        'half-filled': star > rating && star - 0.5 <= rating,
-        empty: star > rating
-      }"
-    >
-      ★
+    <span *ngFor="let star of stars; let i = index" class="star-container">
+      <span class="star-empty">★</span>
+      <span class="star-filled" [ngStyle]="{ width: getStarWidth(i) }">★</span>
     </span>
   </div>
 </div>

@@ -26,6 +26,17 @@ export class DishCardComponent {
     'Main Course': 'fas fa-pizza-slice fa-bounce',
   };
 
+  getStarWidth(starIndex: number): string {
+    const starValue = this.rating - starIndex; // Calculer la valeur de l'étoile actuelle
+    if (starValue >= 1) {
+      return '100%'; // Étoile pleine
+    } else if (starValue <= 0) {
+      return '0%'; // Étoile vide
+    } else {
+      return `${(starValue * 100).toFixed(2)}%`; // Partie remplie en pourcentage
+    }
+  }
+
   get typeIconClass() {
     return this.typeIcons[this.type] || 'fa-utensils';
   }

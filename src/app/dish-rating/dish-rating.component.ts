@@ -5,6 +5,8 @@ import { CommonModule } from '@angular/common';
 import { Dish } from '../models/dish.type';
 import { DishService } from '../services/dish.service';
 import { catchError } from 'rxjs';
+import { RatingService } from '../services/rating.service';
+
 @Component({
   selector: 'app-dish-rating',
   standalone: true,
@@ -14,13 +16,18 @@ import { catchError } from 'rxjs';
 })
 export class DishRatingComponent {
   searchQuery: string = ''; // Search query for filtering dishes
-  rating: number = 3.6;
 
   // Sample dish data
   dishService = inject(DishService);
+  ratingService = inject(RatingService);
   dishes: Dish[] = [];
 
   ngOnInit(): void {
+    this.loadDishes(); // Charger les plats et leurs évaluations
+  }
+
+  // Méthode pour charger les plats et leurs évaluations
+  loadDishes(): void {
     this.dishService
       .getDishes()
       .pipe(
@@ -30,10 +37,23 @@ export class DishRatingComponent {
         })
       )
       .subscribe((data) => {
-        data.map((dish) => {
-          this.dishes.push(dish);
-        });
+        this.dishes = data; // Stocker les plats récupérés
+        this.loadRatings(); // Charger les évaluations pour chaque plat
       });
+  }
+
+  // Méthode pour charger les évaluations (moyenne des étoiles) pour chaque plat
+  loadRatings(): void {
+    this.dishes.forEach((dish) => {
+      this.ratingService.getAverageRatingForDish(dish.id).subscribe(
+        (averageRating: number) => {
+          dish.ratingAverage = averageRating; // Ajouter la moyenne des étoiles au plat
+        },
+        (error) => {
+          console.error('Error fetching rating for dish:', dish.id, error);
+        }
+      );
+    });
   }
 
   get filteredDishes() {

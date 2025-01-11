@@ -91,28 +91,25 @@
   color: #d68240;
 }
 
-.dish-rating .filled {
-  color: #d68240;
+.dish-rating {
   font-size: 32px;
+  color: #ccc; /* Couleur des étoiles vides */
 }
 
-.dish-rating .half-filled {
+.star-container {
   position: relative;
-  color: #ccc;
-  font-size: 32px;
+  display: inline-block;
 }
 
-.dish-rating .half-filled::before {
-  content: "★";
+.star-empty {
+  color: #ccc; /* Couleur de fond (vide) */
+}
+
+.star-filled {
   position: absolute;
+  top: 0;
   left: 0;
-  width: 50%;
   overflow: hidden;
-  color: #d68240;
-  font-size: 32px;
-}
-
-.dish-rating .empty {
-  color: #ccc;
-  font-size: 32px;
+  color: #d68240; /* Couleur de remplissage */
+  white-space: nowrap;
 }

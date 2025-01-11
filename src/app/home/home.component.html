@@ -1,1 +1,13 @@
-<p>home works!</p>
+<div class="home">  
+  <h1 class="title">Daily Menu</h1>
+  <div class="dish-grid">
+    <app-dish-card
+      *ngFor="let dish of dailyDish"
+      [imageUrl]="dish.imageUrl"
+      [type]="dish.type"
+      [name]="dish.name"
+    ></app-dish-card>
+  </div>
+  <h1 class="title">Top Feedbacks</h1>
+
+</div>  

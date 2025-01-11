@@ -1,0 +1,48 @@
+<div class="sidebar">
+    <!-- Sidebar Header with Logo -->
+    <div class="sidebar-header">
+      <img src="assets/images/logo.png" alt="Logo" class="sidebar-logo" />
+    </div>
+  
+    <!-- Sidebar Menu -->
+    <ul class="sidebar-menu">
+      <li>
+        <a routerLink="/home" class="sidebar-link">
+          <i class="fas fa-home"></i> <!-- FontAwesome icon -->
+          <span>Home</span>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/daily-menu-management" class="sidebar-link">
+          <i class="fas fa-utensils"></i> <!-- FontAwesome icon -->
+          <span>Daily Menu Management</span>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/dishes" class="sidebar-link">
+          <i class="fas fa-list"></i> <!-- FontAwesome icon -->
+          <span>Dishes Management</span>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/dish-rating" class="sidebar-link">
+          <i class="fas fa-star"></i> <!-- FontAwesome icon -->
+          <span>Dish Rating</span>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/about-us" class="sidebar-link">
+          <i class="fas fa-info-circle"></i> <!-- FontAwesome icon -->
+          <span>About</span>
+        </a>
+      </li>
+    </ul>
+  
+    <!-- Logout Button -->
+    <div class="logout-section">
+      <button class="logout-button" (click)="onLogout()">
+        <i class="fas fa-sign-out-alt"></i> <!-- FontAwesome icon -->
+        <span>Logout</span>
+      </button>
+    </div>
+  </div>

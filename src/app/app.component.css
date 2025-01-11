@@ -1,0 +1,43 @@
+/* Main content */
+.main-content {
+    margin-left: 250px; /* Match the width of the sidebar */
+    padding: 1rem;
+    transition: margin-left 0.3s ease;
+  }
+  
+  /* Adjust main content when sidebar is hidden */
+  .main-content.sidebar-hidden {
+    margin-left: 0;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .main-content {
+      margin-left: 0; /* Remove margin on smaller screens */
+      padding: 1rem;
+    }
+  
+    .sidebar {
+      width: 60px; /* Collapse the sidebar on smaller screens */
+    }
+  
+    .sidebar-header {
+      display: none; /* Hide the header on smaller screens */
+    }
+  
+    .sidebar-link span {
+      display: none; /* Hide the text in sidebar links */
+    }
+  
+    .sidebar-link i {
+      margin-right: 0; /* Remove margin for icons */
+    }
+  
+    .logout-button span {
+      display: none; /* Hide the text in the logout button */
+    }
+  
+    .logout-button i {
+      margin-right: 0; /* Remove margin for the logout icon */
+    }
+  }

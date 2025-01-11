@@ -1,0 +1,123 @@
+/* Sidebar container */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background: linear-gradient(90deg, #121A1D, #1F2D30);
+    color: #ffffff;
+    padding: 1rem;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    transition: width 0.3s ease; /* Smooth transition for collapsing */
+  }
+  
+  /* Sidebar header */
+  .sidebar-header {
+    margin-bottom: 1.5rem;
+    text-align: center;
+    padding: 1rem 0;
+  }
+  
+  /* Logo image */
+  .sidebar-logo {
+    width: 80%;
+    max-width: 150px;
+    height: auto;
+  }
+  
+  /* Sidebar menu */
+  .sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex: 1;
+  }
+  
+  .sidebar-menu li {
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Sidebar links */
+  .sidebar-link {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .sidebar-link:hover {
+    background-color: #D68240;
+  }
+  
+  /* FontAwesome icons */
+  .sidebar-link i {
+    width: 20px;
+    margin-right: 1rem;
+    font-size: 1rem;
+  }
+  
+  /* Logout section */
+  .logout-section {
+    margin-top: auto;
+    padding: 1rem 0;
+    border-top: 1px solid #34495e;
+  }
+  
+  /* Logout button */
+  .logout-button {
+    background-color: #D68240;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border: none;
+    color: #ffffff;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .logout-button:hover {
+    background-color: #a76330;  }
+  
+  /* FontAwesome icon in logout button */
+  .logout-button i {
+    width: 20px;
+    margin-right: 1rem;
+    font-size: 1rem;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .sidebar {
+      width: 60px; /* Collapse the sidebar on smaller screens */
+    }
+  
+    .sidebar-header {
+      display: none; /* Hide the header on smaller screens */
+    }
+  
+    .sidebar-link span {
+      display: none; /* Hide the text in sidebar links */
+    }
+  
+    .sidebar-link i {
+      margin-right: 0; /* Remove margin for icons */
+    }
+  
+    .logout-button span {
+      display: none; /* Hide the text in the logout button */
+    }
+  
+    .logout-button i {
+      margin-right: 0; /* Remove margin for the logout icon */
+    }
+  }

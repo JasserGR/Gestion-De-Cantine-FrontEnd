@@ -1,23 +1,35 @@
 <div class="dish-management">
-    <!-- Search Bar -->
-    <div class="search-bar">
-      <input
-        type="text"
-        placeholder="Search for the dishes..."
-        [(ngModel)]="searchQuery"
-        (input)="onSearch()"
-      />
-    </div>
-  
-    <!-- Dish Grid -->
-    <div class="dish-grid">
-      <app-dish-card
-        *ngFor="let dish of filteredDishes"
-        [imageUrl]="dish.imageUrl"
-        [type]="dish.type"
-        [name]="dish.name"
-        (modify)="onModifyDish(dish)"
-        (delete)="onDeleteDish(dish)"
-      ></app-dish-card>
+  <!-- Title and Top Bar -->
+  <div class="top-bar">
+    <h1 class="page-title">Dishes Management</h1>
+    <div class="search-filter-add">
+      <div class="search-bar">
+        <i class="fas fa-search search-icon"></i>
+        <input
+          type="text"
+          placeholder="Search for the dishes..."
+          [(ngModel)]="searchQuery"
+          (input)="onSearch()"
+        />
+      </div>
+      <div class="filter-icon">
+        <i class="fas fa-filter"></i>
+      </div>
+      <button class="add-dish-button" (click)="onAddDish()">
+        <i class="fas fa-plus"></i> Add New Dish
+      </button>
     </div>
   </div>
+
+  <!-- Dish Grid -->
+  <div class="dish-grid">
+    <app-dish-card
+      *ngFor="let dish of filteredDishes"
+      [imageUrl]="dish.imageUrl"
+      [type]="dish.type"
+      [name]="dish.name"
+      (modify)="onModifyDish(dish)"
+      (delete)="onDeleteDish(dish)"
+    ></app-dish-card>
+  </div>
+</div>

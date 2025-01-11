@@ -1,10 +1,5 @@
-import { Component } from '@angular/core';
-
-
-import { NgModule } from '@angular/core';
-
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
 import { DishCardComponent } from "../dish-card/dish-card.component";
 import { CommonModule } from '@angular/common';
 
@@ -19,29 +14,22 @@ export class DishManagementComponent {
   searchQuery: string = ''; // Search query for filtering dishes
 
   // Sample dish data
-  dishes = [
-    {
-      imageUrl: '/images/plat.png',
-      type: 'Entele',
-      name: 'Fresh Strawberries'
-    },
-    {
-      imageUrl: '/images/plat.png',
-      type: 'Dessert',
-      name: 'Chocolate Cake'
-    },
-    {
-      imageUrl: '/images/plat.png',
-      type: 'Pizza',
-      name: 'Margherita Pizza'
-    },
-    {
-      imageUrl: '/images/plat.png',
-      type: 'Burger',
-      name: 'Cheeseburger'
-    },
-    // Add more dishes here
-  ];
+  dishService=inject(DishService);
+  dishesList: Dish[] = [];
+
+  ngOnInit(): void {
+    this.dishService.getDishes()
+    .pipe(
+      catchError((error) => {
+        console.error('Error fetching dishes:', error);
+        throw error;
+      }
+    ))
+    .subscribe((data) => {
+      this.dishes = data;
+    });
+    console.log('Dishes:', this.dishesList);
+  }
 
   // Get filtered dishes based on search query
   get filteredDishes() {
@@ -65,6 +53,10 @@ export class DishManagementComponent {
   onDeleteDish(dish: any) {
     console.log('Delete dish:', dish.name);
     // Add your delete logic here
+  }
+  onAddDish() {
+    console.log('Add new dish');
+    // Add your logic to add a new dish here
   }
 }
 

@@ -1,6 +1,6 @@
 <div class="dish-card">
     <!-- Dish Image -->
-    <img [src]="imageUrl" alt="Dish Image" class="dish-image" />
+    <img [src]="imageUrl" alt="Dish Image" class="dish-image" (error)="onImageError($event)" />
   
     <!-- Double Circles with Icon -->
     <div class="icon-container">

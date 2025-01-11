@@ -35,4 +35,9 @@ export class DishCardComponent {
   onDelete() {
     this.delete.emit();
   }
+
+  onImageError(event: Event) {
+    const target = event.target as HTMLImageElement;
+    target.src = '/images/plat.png'; 
+  }
 }

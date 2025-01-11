@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DishCardComponent } from "../dish-card/dish-card.component";
 import { CommonModule } from '@angular/common';
@@ -13,7 +13,7 @@ import { catchError } from 'rxjs';
   templateUrl: './dish-management.component.html',
   styleUrl: './dish-management.component.css'
 })
-export class DishManagementComponent {
+export class DishManagementComponent implements OnInit{
   searchQuery: string = ''; // Search query for filtering dishes
 
   // Sample dish data
@@ -29,9 +29,12 @@ export class DishManagementComponent {
       }
     ))
     .subscribe((data) => {
-      this.dishes = data;
+      data.map((dish) => {
+        this.dishes.push(dish);
     });
-  }
+  })
+
+  }
 
   get filteredDishes() {
     return this.dishes.filter(dish =>

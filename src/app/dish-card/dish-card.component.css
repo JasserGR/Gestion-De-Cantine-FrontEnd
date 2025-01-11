@@ -90,9 +90,10 @@
     border: none;
     cursor: pointer;
     padding: 0;
-  }
-  
-  .button-icon {
     font-size: 1.25rem;
     color: #1F2D30;
+  }
+  
+  .icon-button:hover {
+    color: #D68240;
   }

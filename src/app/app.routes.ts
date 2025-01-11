@@ -13,7 +13,7 @@ export const routes: Routes = [
   { path: 'daily-menu-management', component: DailyMenuManagementComponent },
   { path: 'dish-rating', component:DishRatingComponent },
   { path: 'about-us', component: AboutUsComponent },
-  { path: 'Home', component: HomeComponent },
+  { path: 'home', component: HomeComponent },
   { path: '**', redirectTo: '/login' } 
 ];
 

@@ -36,6 +36,6 @@ export class AppComponent implements OnInit {
     const normalizedUrl = url.toLowerCase().trim();
 
 
-    this.showSidebar = !(normalizedUrl === '/login' || normalizedUrl === '');
+    this.showSidebar = !(normalizedUrl === '/login' || normalizedUrl === '' || normalizedUrl === '**');
   }
 }

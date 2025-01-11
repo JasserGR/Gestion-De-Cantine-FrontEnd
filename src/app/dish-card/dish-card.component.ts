@@ -8,19 +8,18 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class DishCardComponent {
   @Input() imageUrl: string = ''; 
-  @Input() type: string = 'Dessert'; 
-  @Input() name: string = 'Fresh Strawberries'; 
+  @Input() type: string = ''; 
+  @Input() name: string = ''; 
 
   @Output() modify = new EventEmitter<void>(); 
   @Output() delete = new EventEmitter<void>(); 
 
   
   typeIcons: { [key: string]: string } = {
-    Entele: 'fa-utensils',
-    Dessert: 'fa-ice-cream',
-    Pizza: 'fa-pizza-slice',
-    Burger: 'fa-hamburger'
-  };
+    Appetizers: 'fas fa-utensils fa-bounce', 
+    Desserts: 'fas fa-ice-cream fa-bounce', 
+    "Main Course": 'fas fa-pizza-slice fa-bounce', 
+};
 
   
   get typeIconClass() {

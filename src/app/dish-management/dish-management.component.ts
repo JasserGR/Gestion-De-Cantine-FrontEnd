@@ -2,6 +2,9 @@ import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DishCardComponent } from "../dish-card/dish-card.component";
 import { CommonModule } from '@angular/common';
+import { Dish } from '../models/dish.type';
+import { DishService } from '../services/dish.service';
+import { catchError } from 'rxjs';
 
 @Component({
   selector: 'app-dish-management',
@@ -15,7 +18,7 @@ export class DishManagementComponent {
 
   // Sample dish data
   dishService=inject(DishService);
-  dishesList: Dish[] = [];
+  dishes: Dish[] = [];
 
   ngOnInit(): void {
     this.dishService.getDishes()
@@ -28,28 +31,22 @@ export class DishManagementComponent {
     .subscribe((data) => {
       this.dishes = data;
     });
-    console.log('Dishes:', this.dishesList);
   }
 
-  // Get filtered dishes based on search query
   get filteredDishes() {
     return this.dishes.filter(dish =>
       dish.name.toLowerCase().includes(this.searchQuery.toLowerCase())
     );
   }
 
-  // Handle search input
   onSearch() {
     console.log('Search query:', this.searchQuery);
   }
 
-  // Handle modify button click
   onModifyDish(dish: any) {
     console.log('Modify dish:', dish.name);
-    // Add your modify logic here
   }
 
-  // Handle delete button click
   onDeleteDish(dish: any) {
     console.log('Delete dish:', dish.name);
     // Add your delete logic here

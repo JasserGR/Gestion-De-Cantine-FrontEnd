@@ -1,29 +1,40 @@
 <div class="dish-card">
-    <!-- Dish Image -->
-    <img [src]="imageUrl" alt="Dish Image" class="dish-image" (error)="onImageError($event)" />
-  
-    <!-- Double Circles with Icon -->
-    <div class="icon-container">
-      <div class="outer-circle">
-        <div class="inner-circle">
-          <i class="fa-solid {{ typeIconClass }} type-icon"></i>
-        </div>
+  <!-- Dish Image -->
+  <img
+    [src]="imageUrl"
+    alt="Dish Image"
+    class="dish-image"
+    (error)="onImageError($event)"
+  />
+
+  <!-- Double Circles with Icon -->
+  <div class="icon-container">
+    <div class="outer-circle">
+      <div class="inner-circle">
+        <i class="fa-solid {{ typeIconClass }} type-icon"></i>
       </div>
     </div>
-  
-    <!-- Dish Type and Name -->
-    <div class="dish-info">
-      <p class="dish-type">Type: {{ type }}</p>
-      <h3 class="dish-name">{{ name }}</h3>
-    </div>
-  
-    <!-- Action Buttons -->
-    <div class="action-buttons">
-      <button class="icon-button" (click)="onModify()">
-        <i class="fa-solid fa-pen" ></i>
-      </button>
-      <button class="icon-button" (click)="onDelete()">
-        <i class="fa-solid fa-trash" ></i>
-      </button>
-    </div>
   </div>
+
+  <!-- Dish Type and Name -->
+  <div class="dish-info">
+    <p class="dish-type">Type: {{ type }}</p>
+    <h3 class="dish-name">{{ name }}</h3>
+  </div>
+
+  <!-- Action Buttons -->
+  <div *ngIf="attribut === 'dish'" class="action-buttons">
+    <button class="icon-button" (click)="onModify()">
+      <i class="fa-solid fa-pen"></i>
+    </button>
+    <button class="icon-button" (click)="onDelete()">
+      <i class="fa-solid fa-trash"></i>
+    </button>
+  </div>
+  <div *ngIf="attribut === 'rating'" class="dish-rating">
+    <span *ngFor="let star of stars; let i = index" class="star-container">
+      <span class="star-empty">★</span>
+      <span class="star-filled" [ngStyle]="{ width: getStarWidth(i) }">★</span>
+    </span>
+  </div>
+</div>

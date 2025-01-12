@@ -1,1 +1,32 @@
-<p>dish-rating works!</p>
+<div class="dish-management">
+  <!-- Title and Top Bar -->
+  <div class="top-bar">
+    <h1 class="page-title">Dishes Rating</h1>
+    <div class="search-filter-add">
+      <div class="search-bar">
+        <i class="fas fa-search search-icon"></i>
+        <input
+          type="text"
+          placeholder="Search for the dishes..."
+          [(ngModel)]="searchQuery"
+          (input)="onSearch()"
+        />
+      </div>
+      <div class="filter-icon">
+        <i class="fas fa-filter"></i>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dish Grid -->
+  <div class="dish-grid">
+    <app-dish-card
+      *ngFor="let dish of filteredDishes"
+      [imageUrl]="dish.imageUrl"
+      [type]="dish.type"
+      [name]="dish.name"
+      attribut="rating"
+      [rating]="dish.ratingAverage || 0"
+    ></app-dish-card>
+  </div>
+</div>

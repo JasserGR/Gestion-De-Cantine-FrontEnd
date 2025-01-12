@@ -5,4 +5,5 @@ export type Dish = {
     checked: boolean;
     imageUrl: string;
     type: string;
-}
+    ratingAverage?: number;
+};

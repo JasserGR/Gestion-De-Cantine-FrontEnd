@@ -1,1 +1,13 @@
-<p>daily-menu-management works!</p>
+<div class="Daily-Menu-Management">  
+    <h1 class="title">Daily Menu Management</h1>
+    <h1 class="title">Current Menu</h1>
+    <div class="dish-grid">
+      <app-dish-card
+        *ngFor="let dish of dailyDish"
+        [imageUrl]="dish.imageUrl"
+        [type]="dish.type"
+        [name]="dish.name"
+      ></app-dish-card>
+    </div>  
+  </div>  
+  

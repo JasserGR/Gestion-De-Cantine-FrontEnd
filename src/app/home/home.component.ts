@@ -4,11 +4,12 @@ import { Dish } from '../models/dish.type';
 import { catchError } from 'rxjs';
 import { DishCardComponent } from '../dish-card/dish-card.component';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [DishCardComponent , CommonModule],
+  imports: [DishCardComponent , CommonModule,RouterLink],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

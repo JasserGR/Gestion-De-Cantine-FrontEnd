@@ -193,6 +193,17 @@
   cursor: pointer;
 }
 
-.filter-option input {
-  margin: 0;
+.filter-option input [type="checkbox"] {
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  appearance: none;
+  border: 2px solid #D68240;
+  border-radius: 4px;
+  outline: none;
+  transition: background-color 0.3s ease;
+}
+.filter-option input [type="checkbox"]:checked {
+  background-color: #D68240;
+  border-color: #D68240;
 }

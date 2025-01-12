@@ -15,7 +15,7 @@ import { catchError } from 'rxjs';
 })
 export class DishManagementComponent implements OnInit {
   searchQuery: string = '';
-  showForm: boolean = false; // Controls the form visibility
+  showForm: boolean = false; 
   newDish = {
     name: '',
     type: '',
@@ -23,6 +23,8 @@ export class DishManagementComponent implements OnInit {
   };
   dishes: Dish[] = [];
   dishService = inject(DishService);
+  isEditMode: boolean = false; 
+  selectedDishIndex: number | null = null; 
 
   ngOnInit(): void {
     this.dishService.getDishes()
@@ -46,17 +48,17 @@ export class DishManagementComponent implements OnInit {
   toggleForm(): void {
     this.showForm = !this.showForm;
     if (!this.showForm) {
-      // Reset form when closing
       this.newDish = { name: '', type: '', imageUrl: '' };
+      this.isEditMode = false; // Reset to add mode
+      this.selectedDishIndex = null; // Clear the selected dish index
     }
   }
 
-  onSearch(): void {
-    console.log('Search query:', this.searchQuery);
-  }
-
-  onModifyDish(dish: any): void {
-    console.log('Modify dish:', dish.name);
+  onModifyDish(dish: Dish): void {
+    this.newDish = { ...dish }; 
+    this.isEditMode = true; 
+    this.selectedDishIndex = this.dishes.indexOf(dish); 
+    this.showForm = true; 
   }
 
   onDeleteDish(id:number): void {
@@ -89,22 +91,35 @@ export class DishManagementComponent implements OnInit {
       return;
     }
   
-    console.log('Saving dish:', dish);
-  
-    this.dishService.addDish(dish)
-      .pipe(
-        catchError((error) => {
-          console.error('Error saving dish:', error);
-          alert('Failed to save the dish. Please try again later.');
-          throw error; 
-        })
-      )
-      .subscribe((data) => {
-        console.log('Dish successfully saved!');
-        this.dishes.push(data);
-        this.toggleForm(); 
-      });
+    if (this.isEditMode && this.selectedDishIndex !== null) {
+      dish.id = this.dishes[this.selectedDishIndex!].id; // Assign the existing ID
+      this.dishService.modifyDish(dish)
+        .pipe(
+          catchError((error) => {
+            console.error('Error updating dish:', error);
+            alert('Failed to update the dish. Please try again later.'); // Notify the user
+            throw error; // Re-throw the error for further handling if needed
+          })
+        )
+        .subscribe(() => {
+          console.log('Dish successfully updated!');
+          this.dishes[this.selectedDishIndex!] = dish; // Update the dish in the list
+          this.toggleForm(); // Close the form after saving
+        });
+    } else {
+      this.dishService.addDish(dish)
+        .pipe(
+          catchError((error) => {
+            console.error('Error saving dish:', error);
+            alert('Failed to save the dish. Please try again later.');
+            throw error; 
+          })
+        )
+        .subscribe((data) => {
+          console.log('Dish successfully saved!');
+          this.dishes.push(data);
+          this.toggleForm(); 
+        });
+      }
   }
-  
-  
 }

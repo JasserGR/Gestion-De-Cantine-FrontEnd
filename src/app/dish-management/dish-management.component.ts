@@ -26,6 +26,11 @@ export class DishManagementComponent implements OnInit {
   isEditMode: boolean = false; 
   selectedDishIndex: number | null = null; 
 
+  showFilter: boolean = false;
+  filterTypes: string[] = ['Main Course', 'Appetizers', 'Desserts']; // Available dish types
+  selectedTypes: string[] = [];
+
+
   ngOnInit(): void {
     this.dishService.getDishes()
       .pipe(
@@ -41,7 +46,8 @@ export class DishManagementComponent implements OnInit {
 
   get filteredDishes() {
     return this.dishes.filter(dish =>
-      dish.name.toLowerCase().includes(this.searchQuery.toLowerCase())
+      dish.name.toLowerCase().includes(this.searchQuery.toLowerCase()) &&
+      (this.selectedTypes.length === 0 || this.selectedTypes.includes(dish.type))
     );
   }
 
@@ -52,6 +58,10 @@ export class DishManagementComponent implements OnInit {
       this.isEditMode = false; // Reset to add mode
       this.selectedDishIndex = null; // Clear the selected dish index
     }
+  }
+
+  toggleFilter(): void {
+    this.showFilter = !this.showFilter; // Toggle filter checklist visibility
   }
 
   onModifyDish(dish: Dish): void {
@@ -77,7 +87,8 @@ export class DishManagementComponent implements OnInit {
   }
 
   onSaveDish(): void {
-    const dish: Omit<Dish, 'id'> = {
+    const dish: Dish = {
+      id: 0,
       name: this.newDish.name.trim(), 
       type: this.newDish.type || 'Unknown', 
       imageUrl: this.newDish.imageUrl?.trim() || 'default-image-url.png',
@@ -121,5 +132,14 @@ export class DishManagementComponent implements OnInit {
           this.toggleForm(); 
         });
       }
+  }
+  onTypeSelect(type: string): void {
+    if (this.selectedTypes.includes(type)) {
+      // If the type is already selected, remove it
+      this.selectedTypes = this.selectedTypes.filter(t => t !== type);
+    } else {
+      // Otherwise, add it to the selected types
+      this.selectedTypes.push(type);
+    }
   }
 }

@@ -164,3 +164,35 @@
   gap: 1.5rem;
   padding: 1rem;
 }
+
+/* Filter Checklist */
+.filter-checklist {
+  position: absolute;
+  top: 60px; /* Adjust based on your layout */
+  right: 20px; /* Adjust based on your layout */
+  background-color: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000; /* Ensure it appears above other content */
+}
+
+.filter-checklist h3 {
+  margin-top: 0;
+  color: #D68240;
+}
+
+.filter-option {
+  margin-bottom: 10px;
+}
+
+.filter-option label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.filter-option input {
+  margin: 0;
+}

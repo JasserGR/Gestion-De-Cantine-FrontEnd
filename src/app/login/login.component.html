@@ -6,7 +6,7 @@
     </div>
     <div
       *ngIf="
-        loginForm.get('username')?.touched &&
+        loginForm.get('userName')?.touched &&
         loginForm.get('password')?.touched &&
         loginError
       "
@@ -18,22 +18,22 @@
       <div
         class="form-group my-4"
         [class.error]="
-          loginForm.controls['username'].touched &&
-          loginForm.hasError('required', 'username')
+          loginForm.controls['userName'].touched &&
+          loginForm.hasError('required', 'userName')
         "
       >
-        <label for="username">Username</label>
+        <label for="userName">Username</label>
         <input
           id="userName"
           type="text"
           required
           class="form-control"
-          formControlName="username"
+          formControlName="userName"
         />
         <small
           *ngIf="
-            loginForm.controls['username'].touched &&
-            loginForm.hasError('required', 'username')
+            loginForm.controls['userName'].touched &&
+            loginForm.hasError('required', 'userName')
           "
           class="text-danger"
           >Username is required.</small

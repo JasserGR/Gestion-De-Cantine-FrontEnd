@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -7,6 +7,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
+import { jwtDecode } from 'jwt-decode';
+
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -20,25 +23,31 @@ export class LoginComponent {
 
   constructor(private fb: FormBuilder, private router: Router) {
     this.loginForm = this.fb.group({
-      username: ['', [Validators.required]],
+      userName: ['', [Validators.required]],
       password: ['', [Validators.required]],
     });
   }
 
+  authService=inject(AuthService);
+
   onSubmit() {
     if (this.loginForm.valid) {
       console.log('clicked button', this.loginForm.value);
-      // this.auth.login(this.loginForm.value).subscribe(
-      //   (response: any) => {
-      //     this.loginError = false;
-      //     return this.router.navigate(['/home']);
-      //   },
-      //   (error: any) => {
-      //     this.loginError = true;
-      //     console.log('Login error', error);
-      //   }
-      // );
-      this.router.navigate(['/home']);
+      this.authService.login(this.loginForm.value).subscribe({
+        next: (response: any) => {
+          this.loginError = false;
+          console.log('Login response', response);
+          localStorage.setItem('access_token', response.access_token);
+          return this.router.navigate(['/home']);
+        },
+        error: (error: any) => {
+          this.loginError = true;
+          console.log('Login error', error);
+        },
+        complete: () => {
+          console.log('Login request completed');
+        }
+      });
     } else {
       this.loginError = true;
     }

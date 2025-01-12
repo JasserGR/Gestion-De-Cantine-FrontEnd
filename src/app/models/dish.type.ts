@@ -1,5 +1,5 @@
 export type Dish = {
-    id?: number;
+    id: number;
     name: string;
     quantity: number;
     checked: boolean;

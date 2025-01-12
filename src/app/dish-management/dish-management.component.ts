@@ -59,24 +59,33 @@ export class DishManagementComponent implements OnInit {
     console.log('Modify dish:', dish.name);
   }
 
-  onDeleteDish(dish: any): void {
-    console.log('Delete dish:', dish.name);
-    this.dishes = this.dishes.filter(d => d !== dish);
+  onDeleteDish(id:number): void {
+    this.dishService.deleteDish(id)
+    .pipe(
+      catchError((error) => {
+        console.error('Error deleting dish:', error);
+        alert('Failed to delete the dish. Please try again later.');
+        throw error;
+      })
+    )
+    .subscribe((data) => {
+      console.log('Dish successfully deleted!');
+      this.dishes=this.dishes.filter( (dish) => dish.id !== id); 
+    });
   }
 
   onSaveDish(): void {
-    // Ensure the new dish has all required properties
-    const dish: Dish = {
-      name: this.newDish.name.trim(), // Trim to avoid leading/trailing spaces
-      type: this.newDish.type || 'Unknown', // Default type if none is provided
-      imageUrl: this.newDish.imageUrl?.trim() || 'default-image-url.png', // Use default if no image is provided
-      quantity: 0, // Default quantity
-      checked: false // Default checked status
+    const dish: Omit<Dish, 'id'> = {
+      name: this.newDish.name.trim(), 
+      type: this.newDish.type || 'Unknown', 
+      imageUrl: this.newDish.imageUrl?.trim() || 'default-image-url.png',
+      quantity: 0,
+      checked: false
     };
   
     if (!dish.name || !dish.type) {
       console.error('Dish name and type are required!');
-      alert('Dish name and type are required to save the dish.'); // Notify the user
+      alert('Dish name and type are required to save the dish.'); 
       return;
     }
   
@@ -86,14 +95,14 @@ export class DishManagementComponent implements OnInit {
       .pipe(
         catchError((error) => {
           console.error('Error saving dish:', error);
-          alert('Failed to save the dish. Please try again later.'); // Notify the user
-          throw error; // Re-throw the error for further handling if needed
+          alert('Failed to save the dish. Please try again later.');
+          throw error; 
         })
       )
-      .subscribe(() => {
+      .subscribe((data) => {
         console.log('Dish successfully saved!');
-        this.dishes.push(dish); // Add the new dish to the list
-        this.toggleForm(); // Close the form after saving
+        this.dishes.push(data);
+        this.toggleForm(); 
       });
   }
   

@@ -88,7 +88,7 @@
 }
 
 .icon-button:hover {
-  color: #d68240;
+  color: #D68240;
 }
 
 .dish-rating {
@@ -110,6 +110,6 @@
   top: 0;
   left: 0;
   overflow: hidden;
-  color: #d68240; /* Couleur de remplissage */
+  color: #D68240; /* Couleur de remplissage */
   white-space: nowrap;
 }

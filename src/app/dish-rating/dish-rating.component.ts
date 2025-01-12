@@ -22,6 +22,19 @@ export class DishRatingComponent {
   ratingService = inject(RatingService);
   dishes: Dish[] = [];
 
+  showFilter: boolean = false;
+  filterTypes: string[] = ['Main Course', 'Appetizers', 'Desserts']; // Available dish types
+  selectedTypes: string[] = [];
+
+  get filteredDishes() {
+    return this.dishes.filter(dish =>
+      dish.name.toLowerCase().includes(this.searchQuery.toLowerCase()) &&
+      (this.selectedTypes.length === 0 || this.selectedTypes.includes(dish.type))
+    );
+  }
+  toggleFilter(): void {
+    this.showFilter = !this.showFilter; // Toggle filter checklist visibility
+  }
   ngOnInit(): void {
     this.loadDishes(); // Charger les plats et leurs évaluations
   }
@@ -55,11 +68,14 @@ export class DishRatingComponent {
       );
     });
   }
-
-  get filteredDishes() {
-    return this.dishes.filter((dish) =>
-      dish.name.toLowerCase().includes(this.searchQuery.toLowerCase())
-    );
+  onTypeSelect(type: string): void {
+    if (this.selectedTypes.includes(type)) {
+      // If the type is already selected, remove it
+      this.selectedTypes = this.selectedTypes.filter(t => t !== type);
+    } else {
+      // Otherwise, add it to the selected types
+      this.selectedTypes.push(type);
+    }
   }
 
   onSearch() {

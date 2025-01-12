@@ -6,4 +6,5 @@ export type Dish = {
     imageUrl: string;
     type: string;
     ratingAverage?: number;
+    isEditing?: boolean; 
 };

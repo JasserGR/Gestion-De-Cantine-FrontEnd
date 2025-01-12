@@ -20,7 +20,7 @@ export class DishService {
     return this.http.get<Dish>(this.baseUrl+id);
   }
   
-  addDish(dish: Dish):Observable<Dish>{
+  addDish(dish: Omit<Dish, 'id'>):Observable<Dish>{
     return this.http.post<Dish>(this.baseUrl,dish);
   }
   deleteDish(id: number):Observable<Dish>{

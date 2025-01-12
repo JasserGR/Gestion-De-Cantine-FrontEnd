@@ -15,7 +15,7 @@ import { catchError } from 'rxjs';
 })
 export class DishManagementComponent implements OnInit {
   searchQuery: string = '';
-  showForm: boolean = false; // Controls the form visibility
+  showForm: boolean = false; 
   newDish = {
     name: '',
     type: '',
@@ -23,8 +23,8 @@ export class DishManagementComponent implements OnInit {
   };
   dishes: Dish[] = [];
   dishService = inject(DishService);
-  isEditMode: boolean = false; // Flag to distinguish between add and edit modes
-  selectedDishIndex: number | null = null; // Track the index of the dish being edited
+  isEditMode: boolean = false; 
+  selectedDishIndex: number | null = null; 
 
   ngOnInit(): void {
     this.dishService.getDishes()
@@ -48,48 +48,50 @@ export class DishManagementComponent implements OnInit {
   toggleForm(): void {
     this.showForm = !this.showForm;
     if (!this.showForm) {
-      // Reset form when closing
       this.newDish = { name: '', type: '', imageUrl: '' };
       this.isEditMode = false; // Reset to add mode
       this.selectedDishIndex = null; // Clear the selected dish index
     }
   }
 
-  onSearch(): void {
-    console.log('Search query:', this.searchQuery);
-  }
-
   onModifyDish(dish: Dish): void {
-    // Pre-fill the form with existing dish data
-    this.newDish = { ...dish }; // Clone to avoid modifying the original object
-    this.isEditMode = true; // Indicate edit mode
-    this.selectedDishIndex = this.dishes.indexOf(dish); // Track the dish being edited
-    this.showForm = true; // Open the form
+    this.newDish = { ...dish }; 
+    this.isEditMode = true; 
+    this.selectedDishIndex = this.dishes.indexOf(dish); 
+    this.showForm = true; 
   }
 
-  onDeleteDish(dish: any): void {
-    console.log('Delete dish:', dish.name);
-    this.dishes = this.dishes.filter(d => d !== dish);
+  onDeleteDish(id:number): void {
+    this.dishService.deleteDish(id)
+    .pipe(
+      catchError((error) => {
+        console.error('Error deleting dish:', error);
+        alert('Failed to delete the dish. Please try again later.');
+        throw error;
+      })
+    )
+    .subscribe((data) => {
+      console.log('Dish successfully deleted!');
+      this.dishes=this.dishes.filter( (dish) => dish.id !== id); 
+    });
   }
 
   onSaveDish(): void {
-    // Ensure the new dish has all required properties
-    const dish: Dish = {
-      name: this.newDish.name.trim(), // Trim to avoid leading/trailing spaces
-      type: this.newDish.type || 'Unknown', // Default type if none is provided
-      imageUrl: this.newDish.imageUrl?.trim() || 'default-image-url.png', // Use default if no image is provided
-      quantity: 0, // Default quantity
-      checked: false // Default checked status
+    const dish: Omit<Dish, 'id'> = {
+      name: this.newDish.name.trim(), 
+      type: this.newDish.type || 'Unknown', 
+      imageUrl: this.newDish.imageUrl?.trim() || 'default-image-url.png',
+      quantity: 0,
+      checked: false
     };
   
     if (!dish.name || !dish.type) {
       console.error('Dish name and type are required!');
-      alert('Dish name and type are required to save the dish.'); // Notify the user
+      alert('Dish name and type are required to save the dish.'); 
       return;
     }
   
     if (this.isEditMode && this.selectedDishIndex !== null) {
-      // Edit mode: Update the existing dish
       dish.id = this.dishes[this.selectedDishIndex!].id; // Assign the existing ID
       this.dishService.modifyDish(dish)
         .pipe(
@@ -105,20 +107,19 @@ export class DishManagementComponent implements OnInit {
           this.toggleForm(); // Close the form after saving
         });
     } else {
-      // Add mode: Add a new dish
       this.dishService.addDish(dish)
         .pipe(
           catchError((error) => {
             console.error('Error saving dish:', error);
-            alert('Failed to save the dish. Please try again later.'); // Notify the user
-            throw error; // Re-throw the error for further handling if needed
+            alert('Failed to save the dish. Please try again later.');
+            throw error; 
           })
         )
-        .subscribe(() => {
+        .subscribe((data) => {
           console.log('Dish successfully saved!');
-          this.dishes.push(dish); // Add the new dish to the list
-          this.toggleForm(); // Close the form after saving
+          this.dishes.push(data);
+          this.toggleForm(); 
         });
-    }
+      }
   }
 }

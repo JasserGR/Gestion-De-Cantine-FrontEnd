@@ -28,5 +28,6 @@ export class DishService {
   }
 
   modifyDish(dish: Dish):Observable<Dish>{
-    return this.http.put<Dish>(this.baseUrl+dish.id,dish);
+    return this.http.patch<Dish>(this.baseUrl+dish.id,dish);
   }
+}

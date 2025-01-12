@@ -25,7 +25,7 @@
   <div *ngIf="showForm" class="form-overlay">
     <div class="form-container">
       <form (ngSubmit)="onSaveDish()">
-        <h2>Add New Dish</h2>
+        <h2>{{ isEditMode ? 'Edit Dish' : 'Add New Dish' }}</h2>
         <div class="form-field">
           <label for="dishName">Dish Name:</label>
           <input id="dishName" type="text" [(ngModel)]="newDish.name" name="name" required />
@@ -43,7 +43,7 @@
           <input id="dishImage" type="text" [(ngModel)]="newDish.imageUrl" name="imageUrl" />
         </div>
         <div class="form-actions">
-          <button type="submit" class="save-btn">Save</button>
+          <button type="submit" class="save-btn">{{ isEditMode ? 'Update' : 'Save' }}</button>
           <button type="button" class="cancel-btn" (click)="toggleForm()">Cancel</button>
         </div>
       </form>

@@ -3,6 +3,7 @@
   padding: 1rem;
   max-width: 1200px;
   margin: 0 auto;
+  position: relative;
 }
 
 /* Page title */
@@ -17,8 +18,8 @@
 /* Search, filter, and add section */
 .search-filter-add {
   display: flex;
-  align-items: center; 
-  gap: 1rem; 
+  align-items: center;
+  gap: 1rem;
 }
 
 /* Search bar */
@@ -53,18 +54,18 @@
 
 /* Filter icon */
 .filter-icon {
-  font-size: 1.5rem; 
+  font-size: 1.5rem;
   color: #000;
   cursor: pointer;
   display: flex;
-  align-items: center; 
-  justify-content: center; 
-  height: 100%; 
-  margin: 0; 
+  align-items: center;
+  justify-content: center;
 }
+
 .filter-icon:hover {
   color: #D68240;
 }
+
 /* Add new dish button */
 .add-dish-button {
   display: flex;
@@ -83,39 +84,83 @@
   margin-right: 0.5rem;
 }
 
+.form-overlay {
+  position: fixed; /* Make it cover the entire viewport */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent grey */
+  z-index: 1000; /* Ensure it appears above other elements */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Form container within the overlay */
+.form-container {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 90%; /* Adjust width as needed */
+  max-width: 500px;
+}
+.form-container h2 {
+    text-align: left;
+    font-size: 1.5rem;
+    font-weight: bolder;
+    margin-bottom: 1rem;
+    color: #000;
+  }
+
+.form-field {
+  margin-bottom: 1rem;
+}
+
+.form-field label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.form-field input,
+.form-field select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.form-actions {
+  display: flex;
+  justify-content:flex-end;
+  gap: 1rem;
+}
+
+.save-btn {
+  background-color: #D68240;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.cancel-btn {
+  background-color: white;
+  color: #D68240;
+  border: #D68240 solid 1px;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
 /* Dish grid */
 .dish-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 1.5rem;
   padding: 1rem;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .dish-grid {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .dish-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  .search-filter-add {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .search-bar {
-    margin-right: 0;
-    margin-bottom: 1rem;
-  }
-
-  .filter-icon {
-    align-self: flex-end;
-  }
 }

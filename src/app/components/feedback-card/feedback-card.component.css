@@ -1,0 +1,58 @@
+.feedback-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 20px;
+  padding: 30px;
+  width: 90%;
+  max-width: 550px;
+  height: 350px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  overflow: hidden;
+  position: relative;
+}
+
+.header {
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.feedback-card .fa-solid {
+  font-size: 40px;
+  color: #050B20; /* Icon color */
+}
+
+.title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #050B20;
+}
+
+.feedback {
+  font-size: 15px;
+  color: #050B20;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  height: 150px;
+  overflow: auto;
+  text-align: justify;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.user-name {
+  font-size: 16px;
+  font-weight: bold;
+  color: #050B20;
+}

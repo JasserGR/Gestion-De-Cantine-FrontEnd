@@ -1,41 +1,44 @@
-<div class="home">  
+<div class="home">
   <h1 class="title-Main">Home</h1>
   <div class="icon-grid">
-    <div class="icon-card">
-      <a routerLink="/daily-menu-management" >
-      <i class="fa-solid fa-book"></i>
-      <p>Daily Menu Management</p>
-    </a>
+    <div class="icon-card" *ngIf="userRole === 'admin'">
+      <a routerLink="/daily-menu-management">
+        <i class="fa-solid fa-book"></i>
+        <p>Daily Menu Management</p>
+      </a>
+    </div>
+    <div class="icon-card" *ngIf="userRole === 'admin'">
+      <a routerLink="/dish-management">
+        <i class="fa-solid fa-utensils"></i>
+        <p>Dishes Management</p>
+      </a>
     </div>
     <div class="icon-card">
-      <a routerLink="/dish-management" >
-      <i class="fa-solid fa-utensils"></i>
-      <p>Dishes Management</p>
-    </a>
+      <a routerLink="/dish-rating">
+        <i class="fa-solid fa-star"></i>
+        <p>Dish Rating</p>
+      </a>
     </div>
     <div class="icon-card">
-      <a routerLink="/dish-rating" >
-      <i class="fa-solid fa-star"></i>
-      <p>Dish Rating</p>
-    </a>
-    </div>
-    <div class="icon-card">
-      <a routerLink="/about-us" >
-      <i class="fa-solid fa-circle-info"></i>
-      <p>About</p>
-    </a>
+      <a routerLink="/about-us">
+        <i class="fa-solid fa-circle-info"></i>
+        <p>About</p>
+      </a>
     </div>
   </div>
 
   <h1 class="title">Daily Menu</h1>
   <div class="dish-grid">
-    <app-dish-card
-      *ngFor="let dish of dailyDish"
-      [imageUrl]="dish.imageUrl"
-      [type]="dish.type"
-      [name]="dish.name"
-    ></app-dish-card>
+    <app-dish-card *ngFor="let dish of dailyDish" [imageUrl]="dish.imageUrl" [type]="dish.type"
+      [name]="dish.name"></app-dish-card>
   </div>
   <h1 class="title">Top Feedbacks</h1>
+  <div class="feedback-grid">
+    <app-feedback-card 
+      *ngFor="let Rating of bestRatings" 
+      [nameUser]="Rating.idUser.userName"
+      [feedback]="Rating.feedback">
+    </app-feedback-card>
+  </div>
 
-</div>  
+</div>

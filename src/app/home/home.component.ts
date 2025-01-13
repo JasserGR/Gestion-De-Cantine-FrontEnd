@@ -1,35 +1,71 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, Inject, inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { DishService } from '../services/dish.service';
 import { Dish } from '../models/dish.type';
 import { catchError } from 'rxjs';
 import { DishCardComponent } from '../dish-card/dish-card.component';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { jwtDecode } from 'jwt-decode';
+import { RatingService } from '../services/rating.service';
+import { Rating } from '../models/rating.type';
+import { FeedbackCardComponent } from '../components/feedback-card/feedback-card.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [DishCardComponent , CommonModule,RouterLink],
+  imports: [DishCardComponent, CommonModule, RouterLink, FeedbackCardComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-      dishService=inject(DishService);
-      dailyDish: Dish[] = [];
-    
-      ngOnInit(): void {
-        this.dishService.getDailyMenu()
-        .pipe(
-          catchError((error) => {
-            console.error('Error fetching Daily Menu:', error);
-            throw error;
-          }
+
+  dishService = inject(DishService);
+  ratingService = inject(RatingService);
+  dailyDish: Dish[] = [];
+  bestRatings: Rating[] = [];
+  userRole: string | null = null;
+
+  constructor(@Inject(PLATFORM_ID) private platformId: Object ) { }
+
+  ngOnInit(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      const token = localStorage.getItem('access_token');
+      if (token) {
+        const decodedToken: any = jwtDecode(token);
+        this.userRole = decodedToken.role;
+
+      }
+    }
+    this.loadDailyMenu()
+    this.loadBestFeedbacks()
+    console.log(this.bestRatings)
+  }
+
+  loadDailyMenu(): void {
+    this.dishService.getDailyMenu()
+      .pipe(
+        catchError((error) => {
+          console.error('Error fetching Daily Menu:', error);
+          throw error;
+        }
         ))
-        .subscribe((data) => {
-          data.map((dish) => {
-            this.dailyDish.push(dish);
+      .subscribe((data) => {
+        data.map((dish) => {
+          this.dailyDish.push(dish);
         });
-      })
- }
-  
+      })
+  }
+
+  loadBestFeedbacks(): void {
+    this.ratingService.getBestFeedbacks()
+      .pipe(
+        catchError((error) => {
+          console.error('Error fetching Best Feedbacks:', error);
+          throw error;
+        }
+        ))
+      .subscribe((data) => {
+        this.bestRatings = data;
+      })
+  }
 }

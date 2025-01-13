@@ -13,12 +13,12 @@ export class DishCardComponent {
   @Input() type: string = '';
   @Input() name: string = '';
   @Input() attribut: string = '';
-  @Input() rating: number = 0; // Note du plat
+  @Input() rating: number = 0; 
 
   @Output() modify = new EventEmitter<void>();
   @Output() delete = new EventEmitter<void>();
 
-  stars: number[] = [1, 2, 3, 4, 5]; // Nombre d'étoiles disponibles
+  stars: number[] = [1, 2, 3, 4, 5]; 
 
   typeIcons: { [key: string]: string } = {
     Appetizers: 'fas fa-utensils fa-bounce',
@@ -27,13 +27,13 @@ export class DishCardComponent {
   };
 
   getStarWidth(starIndex: number): string {
-    const starValue = this.rating - starIndex; // Calculer la valeur de l'étoile actuelle
+    const starValue = this.rating - starIndex; 
     if (starValue >= 1) {
-      return '100%'; // Étoile pleine
+      return '100%'; 
     } else if (starValue <= 0) {
-      return '0%'; // Étoile vide
+      return '0%'; 
     } else {
-      return `${(starValue * 100).toFixed(2)}%`; // Partie remplie en pourcentage
+      return `${(starValue * 100).toFixed(2)}%`;
     }
   }
 

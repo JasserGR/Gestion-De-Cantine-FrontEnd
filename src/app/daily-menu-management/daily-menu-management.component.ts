@@ -9,12 +9,16 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-daily-menu-management',
   standalone: true,
-  imports: [DishCardComponent , CommonModule,FormsModule],
+  imports: [DishCardComponent, CommonModule, FormsModule],
   templateUrl: './daily-menu-management.component.html',
-  styleUrl: './daily-menu-management.component.css'
+  styleUrl: './daily-menu-management.component.css',
 })
 export class DailyMenuManagementComponent implements OnInit {
-  searchQuery: string = ''; 
+  searchQuery: string = '';
+  showFilter: boolean = false; // Toggle filter visibility
+  filterTypes: string[] = ['Main Course', 'Appetizers', 'Desserts']; // Available dish types
+  selectedTypes: string[] = []; // Selected filter types
+
   dishService = inject(DishService);
   dishes: Dish[] = [];
   dailyDish: Dish[] = [];
@@ -23,36 +27,38 @@ export class DailyMenuManagementComponent implements OnInit {
     this.loadDishes();
     this.loadDailyMenu();
   }
-  loadDishes(): void {
-    this.dishService.getDishes()
-    .pipe(
-      catchError((error) => {
-        console.error('Error fetching Daily Menu Management:', error);
-        throw error;
-      }
-      ))
-    .subscribe((data) => {
-      this.dishes = data.map((dish) => ({
-        ...dish,
-        isEditing: false, 
-      }));
-    })
 
-  }
-  loadDailyMenu(): void {
-    this.dishService.getDailyMenu()
-    .pipe(
-      catchError((error) => {
-        console.error('Error fetching Daily Menu:', error);
-        throw error;
-      }
-      ))
-    .subscribe((data) => {
-      data.map((dish) => {
-        this.dailyDish.push(dish);
+  loadDishes(): void {
+    this.dishService
+      .getDishes()
+      .pipe(
+        catchError((error) => {
+          console.error('Error fetching Daily Menu Management:', error);
+          throw error;
+        })
+      )
+      .subscribe((data) => {
+        this.dishes = data.map((dish) => ({
+          ...dish,
+          isEditing: false,
+        }));
       });
-    })
   }
+
+  loadDailyMenu(): void {
+    this.dishService
+      .getDailyMenu()
+      .pipe(
+        catchError((error) => {
+          console.error('Error fetching Daily Menu:', error);
+          throw error;
+        })
+      )
+      .subscribe((data) => {
+        this.dailyDish = data; // Update dailyDish directly
+      });
+  }
+
   toggleInMenu(dish: Dish): void {
     dish.checked = !dish.checked;
     this.saveQuantity(dish);
@@ -76,9 +82,28 @@ export class DailyMenuManagementComponent implements OnInit {
     });
   }
 
+  // Getter to filter dishes based on search query and selected types
   get filteredDishes() {
-    return this.dishes.filter((dish) =>
-      dish.name.toLowerCase().includes(this.searchQuery.toLowerCase())
-    );
+    return this.dishes.filter((dish) => {
+      const matchesSearch = dish.name.toLowerCase().includes(this.searchQuery.toLowerCase());
+      const matchesFilter = this.selectedTypes.length === 0 || this.selectedTypes.includes(dish.type);
+      return matchesSearch && matchesFilter;
+    });
+  }
+
+  // Toggle filter visibility
+  toggleFilter(): void {
+    this.showFilter = !this.showFilter;
+  }
+
+  // Handle type selection for filtering
+  onTypeSelect(type: string): void {
+    if (this.selectedTypes.includes(type)) {
+      // If the type is already selected, remove it
+      this.selectedTypes = this.selectedTypes.filter((t) => t !== type);
+    } else {
+      // Otherwise, add it to the selected types
+      this.selectedTypes.push(type);
+    }
   }
 }

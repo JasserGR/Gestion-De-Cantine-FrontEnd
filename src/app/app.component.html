@@ -3,5 +3,7 @@
 
 <!-- Main Content -->
 <div class="main-content" [class.sidebar-hidden]="!showSidebar">
-  <router-outlet></router-outlet>
+  <div [@routeAnimations]="prepareRoute(outlet)">
+    <router-outlet #outlet="outlet"></router-outlet>
+  </div>
 </div>

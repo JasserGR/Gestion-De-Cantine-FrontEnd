@@ -18,18 +18,20 @@
     </div>
   </div>
 
-<!-- Filter Checklist (conditionally displayed) -->
-<div *ngIf="showFilter" class="filter-checklist">
-  <h3>Filter by Rating</h3>
-  <div *ngFor="let type of filterTypes" class="filter-option">
-    <label>
-      <input
-        type="checkbox"
-        [checked]="selectedTypes.includes(type)"
-        (change)="onTypeSelect(type)"
-      />
-      {{ type }}
-    </label>
+ <!-- Filter Bar (conditionally displayed) -->
+ <div *ngIf="showFilter" class="filter-bar">
+  <h3>Filter by Type:</h3>
+  <div class="filter-options">
+    <div *ngFor="let type of filterTypes" class="filter-option">
+      <label>
+        <input
+          type="checkbox"
+          [checked]="selectedTypes.includes(type)"
+          (change)="onTypeSelect(type)"
+        />
+        {{ type }}
+      </label>
+    </div>
   </div>
 </div>
 

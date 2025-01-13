@@ -106,45 +106,70 @@
     align-self: flex-end;
   }
 }
-/* Filter Checklist */
-.filter-checklist {
-  position: absolute;
-  top: 60px; /* Adjust based on your layout */
-  right: 20px; /* Adjust based on your layout */
-  background-color: white;
-  padding: 15px;
+/* Filter Bar */
+.filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background-color: #f9f9f9;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  z-index: 1000; /* Ensure it appears above other content */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.filter-checklist h3 {
-  margin-top: 0;
-  color: #D68240;
+.filter-bar h3 {
+  margin: 0;
+  font-weight: bold;
+  font-size: 1.25rem;
+  color: #333;
+}
+
+.filter-options {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .filter-option {
-  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .filter-option label {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 0.5rem;
   cursor: pointer;
 }
 
-.filter-option input [type="checkbox"] {
+/* Custom Checkbox */
+.filter-option input[type="checkbox"] {
   cursor: pointer;
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   appearance: none;
   border: 2px solid #D68240;
   border-radius: 4px;
   outline: none;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  position: relative;
 }
-.filter-option input [type="checkbox"]:checked {
+
+.filter-option input[type="checkbox"]:checked {
   background-color: #D68240;
   border-color: #D68240;
+}
+
+/* Checkmark */
+.filter-option input[type="checkbox"]:checked::after {
+  content: "✔"; /* Unicode checkmark */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 12px;
+  color: white; /* Checkmark color */
 }

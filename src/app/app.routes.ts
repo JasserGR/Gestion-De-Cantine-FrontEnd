@@ -7,14 +7,38 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { HomeComponent } from './home/home.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' }, 
-  { path: 'login', component: LoginComponent }, 
-  { path: 'dish-management', component: DishManagementComponent },
-  { path: 'daily-menu-management', component: DailyMenuManagementComponent },
-  { path: 'dish-rating', component:DishRatingComponent },
-  { path: 'about-us', component: AboutUsComponent },
-  { path: 'home', component: HomeComponent },
-  { path: '**', redirectTo: '/login' } 
+  { path: '', redirectTo: '/login', pathMatch: 'full' }, // Default route
+  { 
+    path: 'login', 
+    component: LoginComponent,
+    data: { animation: 'LoginPage' } // Add animation data
+  }, 
+  { 
+    path: 'dish-management', 
+    component: DishManagementComponent,
+    data: { animation: 'DishManagementPage' } // Add animation data
+  },
+  { 
+    path: 'daily-menu-management', 
+    component: DailyMenuManagementComponent,
+    data: { animation: 'DailyMenuManagementPage' } // Add animation data
+  },
+  { 
+    path: 'dish-rating', 
+    component: DishRatingComponent,
+    data: { animation: 'DishRatingPage' } // Add animation data
+  },
+  { 
+    path: 'about-us', 
+    component: AboutUsComponent,
+    data: { animation: 'AboutUsPage' } // Add animation data
+  },
+  { 
+    path: 'home', 
+    component: HomeComponent,
+    data: { animation: 'HomePage' } // Add animation data
+  },
+  { path: '**', redirectTo: '/login' } // Wildcard route for 404
 ];
 
-export const AppRoutes = RouterModule.forRoot(routes); 
+export const AppRoutes = RouterModule.forRoot(routes);

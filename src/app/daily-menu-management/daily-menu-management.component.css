@@ -5,11 +5,11 @@
 }
 
 .daily-title {
-    text-align: center;
-    font-size: 4rem;
-    font-weight: bolder;
-    margin-bottom: 2rem;
-    color: #1F2D30;
+  text-align: left;
+  font-size: 4rem;
+  font-weight: bolder;
+  margin-bottom: 1.5rem;
+  color: #000;
 }
 .menu-title {
     margin-top: 4rem;
@@ -157,16 +157,83 @@
   }
   
   /* Filter icon */
-  .filter-icon {
-    font-size: 1.5rem;
-    color: #000;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    margin: 0;
-  }
-  .filter-icon:hover {
-    color: #d68240;
-  }
+.filter-icon {
+  font-size: 1.5rem;
+  color: #000;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.filter-icon:hover {
+  color: #D68240;
+}
+
+/* Filter Bar */
+.filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.filter-bar h3 {
+  margin: 0;
+  font-weight: bold;
+  font-size: 1.25rem;
+  color: #333;
+}
+
+.filter-options {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.filter-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.filter-option label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+/* Custom Checkbox */
+.filter-option input[type="checkbox"] {
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+  appearance: none;
+  border: 2px solid #D68240;
+  border-radius: 4px;
+  outline: none;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  position: relative;
+}
+
+.filter-option input[type="checkbox"]:checked {
+  background-color: #D68240;
+  border-color: #D68240;
+}
+
+/* Checkmark */
+.filter-option input[type="checkbox"]:checked::after {
+  content: "✔";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 12px;
+  color: white;
+}

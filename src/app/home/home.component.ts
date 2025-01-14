@@ -29,16 +29,10 @@ export class HomeComponent {
 
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
-      const token = localStorage.getItem('access_token');
-      if (token) {
-        const decodedToken: any = jwtDecode(token);
-        this.userRole = decodedToken.role;
-
-      }
+      this.userRole = localStorage.getItem('role');
     }
     this.loadDailyMenu()
     this.loadBestFeedbacks()
-    console.log(this.bestRatings)
   }
 
   loadDailyMenu(): void {

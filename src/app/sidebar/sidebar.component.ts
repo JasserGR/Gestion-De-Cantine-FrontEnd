@@ -19,17 +19,13 @@ export class SidebarComponent implements OnInit {
   ) { }
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
-      const token = localStorage.getItem('access_token');
-      if (token) {
-        const decodedToken: any = jwtDecode(token);
-        this.userRole = decodedToken.role;
+      this.userRole = localStorage.getItem('role');
       }
     }
-  }
   onLogout() {
     if (isPlatformBrowser(this.platformId)) {
       localStorage.removeItem('access_token');
-      localStorage.removeItem('currentUser');
+      localStorage.removeItem('role');
       console.log('User logged out');
       this.router.navigate(['/login']);
     }

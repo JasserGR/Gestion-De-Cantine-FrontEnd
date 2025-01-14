@@ -1,11 +1,20 @@
 <div class="feedback-card">
-  <div class="header">
-    <h2 class="title">{{ title }}</h2>
-    <i class="fa-solid fa-quote-left"></i> 
+  <div class="header" *ngIf="cardType === 'homepage'">
+    <h2 class="title" >{{ title }}</h2>
+    <i class="fa-solid fa-quote-left" ></i> 
   </div>
-    <p class="feedback">{{ feedback }}</p>
+    <p class="feedback" *ngIf="cardType === 'homepage'">{{ feedback }}</p>
     <div class="user-info">
+      <div class="user-details">
       <img [src]="imageUrl" alt="{{ nameUser }}" class="user-image" />
       <span class="user-name">{{ nameUser }}</span>
+      </div>
+      <div *ngIf="cardType === 'popup'" class="dish-rating">
+        <span *ngFor="let star of stars; let i = index" class="star-container">
+          <span class="star-empty">★</span>
+          <span class="star-filled" [ngStyle]="{ width: getStarWidth(i) }">★</span>
+        </span>
+      </div>
     </div>
-  </div>
+    <p class="feedback-popup" *ngIf="cardType === 'popup'">{{ feedback }}</p>
+</div>

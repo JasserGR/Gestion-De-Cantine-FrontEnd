@@ -41,9 +41,25 @@
   text-align: justify;
 }
 
+.feedback-popup {
+  font-size: 14px;
+  color: #050B20;
+  line-height: 1.5;
+  margin-top: 10px;
+  height: min-content;
+  overflow: auto;
+  text-align: justify;
+}
+
 .user-info {
   display: flex;
-  align-items: center;
+  justify-content: space-between; 
+  align-items: center; 
+}
+
+.user-details {
+  display: flex;
+  align-items: center; 
 }
 
 .user-image {
@@ -58,7 +74,36 @@
   font-weight: bold;
   color: #050B20;
 }
+.popup {
+  display: flex;
+  flex-direction: column-reverse;
+  text-align: left;
+}
 
+.dish-rating {
+  font-size: 32px;
+  color: #ccc;
+  display: flex;
+  gap: 4px; 
+}
+
+.star-container {
+  position: relative;
+  display: inline-block;
+}
+
+.star-empty {
+  color: #ccc; 
+}
+
+.star-filled {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  color: #D68240;
+  white-space: nowrap;
+}
 @media (max-width: 768px) {
   .feedback-card {
     padding: 20px;

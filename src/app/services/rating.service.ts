@@ -17,4 +17,7 @@ export class RatingService {
   getBestFeedbacks(): Observable<Rating[]> {
     return this.http.get<Rating[]>(this.baseUrl + 'top-feedbacks');
   }
+  getRatings(id:number): Observable<Rating[]> {
+    return this.http.get<Rating[]>(this.baseUrl+'dish/'+id);
+  }
 }

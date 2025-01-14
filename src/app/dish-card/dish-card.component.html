@@ -1,13 +1,13 @@
-<div class="dish-card">
-  <!-- Dish Image -->
+<div class="dish-card"
+[ngClass]="{ 'clickable': attribut === 'rating' }"
+(click)="attribut === 'rating' ? openPopup() : null"
+>
   <img
     [src]="imageUrl"
     alt="Dish Image"
     class="dish-image"
     (error)="onImageError($event)"
   />
-
-  <!-- Double Circles with Icon -->
   <div class="icon-container">
     <div class="outer-circle">
       <div class="inner-circle">
@@ -15,14 +15,11 @@
       </div>
     </div>
   </div>
-
-  <!-- Dish Type and Name -->
   <div class="dish-info">
     <p class="dish-type">Type: {{ type }}</p>
     <h3 class="dish-name">{{ name }}</h3>
   </div>
 
-  <!-- Action Buttons -->
   <div *ngIf="attribut === 'dish'" class="action-buttons">
     <button class="icon-button" (click)="onModify()">
       <i class="fa-solid fa-pen"></i>
@@ -36,5 +33,23 @@
       <span class="star-empty">★</span>
       <span class="star-filled" [ngStyle]="{ width: getStarWidth(i) }">★</span>
     </span>
+  </div>
+</div>
+<!-- Popup -->
+<div *ngIf="showPopup" class="popup-overlay">
+  <div class="popup-content">
+    <div class="header">
+      <h2>Feedbacks</h2>
+      <i class="fa-solid fa-times close-icon" (click)="closePopup()"></i>
+    </div>
+    <div class="feedback-container">
+      <app-feedback-card
+        *ngFor="let rating of ratings"
+        [nameUser]="rating.idUser.userName"
+        [feedback]="rating.feedback"
+        [cardType]="'popup'"
+        [rating]="rating.nbStars"
+      ></app-feedback-card>
+    </div>
   </div>
 </div>

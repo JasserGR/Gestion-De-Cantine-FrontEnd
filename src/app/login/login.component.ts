@@ -36,8 +36,9 @@ export class LoginComponent {
       this.authService.login(this.loginForm.value).subscribe({
         next: (response: any) => {
           this.loginError = false;
-          console.log('Login response', response);
           localStorage.setItem('access_token', response.access_token);
+          const decodedToken: any = jwtDecode(response.access_token);
+          localStorage.setItem('role', decodedToken.role);
           return this.router.navigate(['/home']);
         },
         error: (error: any) => {

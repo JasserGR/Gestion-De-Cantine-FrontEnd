@@ -20,4 +20,8 @@ export class RatingService {
   getRatings(id:number): Observable<Rating[]> {
     return this.http.get<Rating[]>(this.baseUrl+'dish/'+id);
   }
+
+  addRating(rating:any): Observable<Rating> {
+    return this.http.post<Rating>(this.baseUrl,rating);
+  }
 }

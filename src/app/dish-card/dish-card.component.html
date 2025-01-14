@@ -39,7 +39,12 @@
 <div *ngIf="showPopup" class="popup-overlay">
   <div class="popup-content">
     <div class="header">
-      <h2>Feedbacks</h2>
+      <div class="title">
+        <label>Feedbacks</label>
+        <button *ngIf="userRole == 'student'" class="add-feedback-button" (click)="toggleForm()" >
+          <i class="fas fa-plus"></i> Add
+        </button>
+      </div>
       <i class="fa-solid fa-times close-icon" (click)="closePopup()"></i>
     </div>
     <div class="feedback-container">
@@ -51,5 +56,41 @@
         [rating]="rating.nbStars"
       ></app-feedback-card>
     </div>
+  </div>
+</div>
+
+<div *ngIf="showForm" class="form-overlay">
+  <div class="form-container">
+    <form (ngSubmit)="onSaveFeedback()">
+      <h2>New Feedback</h2>
+      <div class="form-field">
+        <label for="rating">Rating:</label>
+        <input
+          id="nbStars"
+          type="number"
+          [(ngModel)]="newFeedback.nbStars"
+          name="nbStars"
+          min="1"
+          max="5"
+          required
+        />
+      </div>
+      <div class="form-field">
+        <label for="feedback">Feedback:</label>
+        <textarea
+          id="feedback"
+          [(ngModel)]="newFeedback.feedback"
+          name="feedback"
+          rows="4"
+          required
+        ></textarea>
+      </div>
+
+      <!-- Form Actions -->
+      <div class="form-actions">
+        <button type="submit" class="save-btn">Save</button>
+        <button type="button" class="cancel-btn" (click)="toggleForm()">Cancel</button>
+      </div>
+    </form>
   </div>
 </div>

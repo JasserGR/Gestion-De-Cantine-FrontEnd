@@ -1,8 +1,7 @@
-/* Main content */
 .main-content {
-  margin-left: 250px; 
-  padding: 1rem;
-      transition: margin-left 0.3s ease;
+    padding: 1rem;
+    margin-left: 250px;
+    transition: margin-left 0.3s ease;
   }
   
   
@@ -10,10 +9,9 @@
     margin-left: 0;
   }
   
-  /* Responsive adjustments */
   @media (max-width: 768px) {
     .main-content {
-      margin-left: 0; 
+      margin-left: 40px; 
       padding: 1rem;
     }
   

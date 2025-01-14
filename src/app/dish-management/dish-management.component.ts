@@ -55,13 +55,13 @@ export class DishManagementComponent implements OnInit {
     this.showForm = !this.showForm;
     if (!this.showForm) {
       this.newDish = { name: '', type: '', imageUrl: '' };
-      this.isEditMode = false; // Reset to add mode
-      this.selectedDishIndex = null; // Clear the selected dish index
+      this.isEditMode = false; 
+      this.selectedDishIndex = null; 
     }
   }
 
   toggleFilter(): void {
-    this.showFilter = !this.showFilter; // Toggle filter checklist visibility
+    this.showFilter = !this.showFilter; 
   }
 
   onModifyDish(dish: Dish): void {
@@ -103,19 +103,19 @@ export class DishManagementComponent implements OnInit {
     }
   
     if (this.isEditMode && this.selectedDishIndex !== null) {
-      dish.id = this.dishes[this.selectedDishIndex!].id; // Assign the existing ID
+      dish.id = this.dishes[this.selectedDishIndex!].id; 
       this.dishService.modifyDish(dish)
         .pipe(
           catchError((error) => {
             console.error('Error updating dish:', error);
-            alert('Failed to update the dish. Please try again later.'); // Notify the user
-            throw error; // Re-throw the error for further handling if needed
+            alert('Failed to update the dish. Please try again later.'); 
+            throw error; 
           })
         )
         .subscribe(() => {
           console.log('Dish successfully updated!');
-          this.dishes[this.selectedDishIndex!] = dish; // Update the dish in the list
-          this.toggleForm(); // Close the form after saving
+          this.dishes[this.selectedDishIndex!] = dish; 
+          this.toggleForm(); 
         });
     } else {
       this.dishService.addDish(dish)
@@ -135,10 +135,10 @@ export class DishManagementComponent implements OnInit {
   }
   onTypeSelect(type: string): void {
     if (this.selectedTypes.includes(type)) {
-      // If the type is already selected, remove it
+      
       this.selectedTypes = this.selectedTypes.filter(t => t !== type);
     } else {
-      // Otherwise, add it to the selected types
+      
       this.selectedTypes.push(type);
     }
   }

@@ -47,7 +47,6 @@
   align-items: center;
 }
 
-/* Type icon */
 .type-icon {
   font-size: 1.5rem;
   color: #ffffff;
@@ -88,12 +87,12 @@
 }
 
 .icon-button:hover {
-  color: #D68240;
+  color: #d68240;
 }
 
 .dish-rating {
   font-size: 32px;
-  color: #ccc; /* Couleur des étoiles vides */
+  color: #ccc;
 }
 
 .star-container {
@@ -102,7 +101,7 @@
 }
 
 .star-empty {
-  color: #ccc; /* Couleur de fond (vide) */
+  color: #ccc;
 }
 
 .star-filled {
@@ -110,7 +109,7 @@
   top: 0;
   left: 0;
   overflow: hidden;
-  color: #D68240; /* Couleur de remplissage */
+  color: #d68240;
   white-space: nowrap;
 }
 .clickable {
@@ -161,4 +160,61 @@
   font-size: 28px;
   color: #D68240;
   cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .dish-card {
+    max-width: 400px;
+  }
+
+  .dish-image {
+    height: 180px;
+  }
+
+  .outer-circle {
+    width: 70px;
+    height: 70px;
+  }
+
+  .inner-circle {
+    width: 50px;
+    height: 50px;
+  }
+
+  .type-icon {
+    font-size: 1.25rem;
+  }
+
+  .dish-name {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .dish-card {
+    max-width: 100%;
+    margin: 1rem;
+  }
+
+  .dish-image {
+    height: 150px;
+  }
+
+  .outer-circle {
+    width: 60px;
+    height: 60px;
+  }
+
+  .inner-circle {
+    width: 45px;
+    height: 45px;
+  }
+
+  .type-icon {
+    font-size: 1rem;
+  }
+
+  .dish-name {
+    font-size: 1rem;
+  }
 }

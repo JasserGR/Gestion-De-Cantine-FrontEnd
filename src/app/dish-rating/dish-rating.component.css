@@ -1,11 +1,9 @@
-/* Dish management container */
 .dish-management {
   padding: 1rem;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-/* Page title */
 .page-title {
   text-align: left;
   font-size: 4rem;
@@ -14,14 +12,12 @@
   color: #000;
 }
 
-/* Search, filter, and add section */
 .search-filter-add {
   display: flex;
   align-items: center;
   gap: 1rem;
 }
 
-/* Search bar */
 .search-bar {
   position: relative;
   flex-grow: 1;
@@ -51,7 +47,6 @@
   color: #000;
 }
 
-/* Filter icon */
 .filter-icon {
   font-size: 1.5rem;
   color: #000;
@@ -70,7 +65,6 @@
   margin-right: 0.5rem;
 }
 
-/* Dish grid */
 .dish-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -78,7 +72,6 @@
   padding: 1rem;
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
   .dish-grid {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -106,7 +99,6 @@
     align-self: flex-end;
   }
 }
-/* Filter Bar */
 .filter-bar {
   display: flex;
   align-items: center;
@@ -145,7 +137,6 @@
   cursor: pointer;
 }
 
-/* Custom Checkbox */
 .filter-option input[type="checkbox"] {
   cursor: pointer;
   width: 16px;
@@ -163,13 +154,12 @@
   border-color: #D68240;
 }
 
-/* Checkmark */
 .filter-option input[type="checkbox"]:checked::after {
-  content: "✔"; /* Unicode checkmark */
+  content: "✔"; 
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 12px;
-  color: white; /* Checkmark color */
+  color: white; 
 }

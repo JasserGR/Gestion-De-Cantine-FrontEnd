@@ -21,7 +21,7 @@ GestionDeCantine is a user-friendly platform designed to streamline daily menu m
 
 1. **Clone the repository**:
    ```sh
-   git clone https://github.com/your-username/GestionDeCantine.git
+   git clone https://github.com/JasserGR/Gestion-De-Cantine-FrontEnd.git
    cd GestionDeCantine
    ```
 2. **Install dependencies:**:

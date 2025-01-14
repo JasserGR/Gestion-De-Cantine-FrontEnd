@@ -20,6 +20,7 @@
     margin-bottom: 1.5rem;
     text-align: center;
     padding: 1rem 0;
+    padding-left: 2rem;
   }
   
   
@@ -96,7 +97,6 @@
     font-size: 1rem;
   }
   
-  /* Responsive adjustments */
   @media (max-width: 768px) {
     .sidebar {
       width: 60px;

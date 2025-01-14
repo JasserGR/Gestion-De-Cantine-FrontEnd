@@ -1,10 +1,10 @@
 .Login {
   display: flex;
-  height: 100vh; /* Full viewport height */
+  height: 100vh; 
   justify-content: space-between;
   align-items: center;
   font-family: "Sora", sans-serif;
-  overflow: hidden; /* Prevent scrolling */
+  overflow: hidden; 
 }
 
 form {
@@ -28,14 +28,14 @@ form {
   font-size: 2.5rem;
   color: #d68240;
   margin-bottom: 10px;
-  text-align: left; /* Align text to the left */
+  text-align: left; 
 }
 
 .left p {
   font-size: 1rem;
   color: #666;
   margin-bottom: 30px;
-  text-align: left; /* Align text to the left */
+  text-align: left; 
 }
 
 .Title {
@@ -50,7 +50,7 @@ form {
   color: #666;
   margin: 10px 0 5px;
   display: block;
-  text-align: left; /* Align text to the left */
+  text-align: left; 
 }
 
 .form-control {
@@ -84,10 +84,10 @@ form {
 }
 
 .left button:disabled {
-  background-color: #d68240; /* Couleur de fond plus claire */
-  color: #e0e0e0; /* Couleur du texte plus claire */
-  cursor: not-allowed; /* Curseur "non autorisé" */
-  opacity: 0.7; /* Réduire l'opacité pour indiquer qu'il est désactivé */
+  background-color: #d68240; 
+  color: #e0e0e0; 
+  cursor: not-allowed; 
+  opacity: 0.7; 
 }
 
 .left button:hover {
@@ -96,14 +96,14 @@ form {
 
 .right {
   width: 50%;
-  height: 100vh; /* Full viewport height */
+  height: 100vh; 
   background: linear-gradient(90deg, #121a1d, #1f2d30);
   display: flex;
   justify-content: center;
   align-items: center;
-  position: fixed; /* Fix the right section */
-  right: 0; /* Align to the right */
-  top: 0; /* Align to the top */
+  position: fixed; 
+  right: 0; 
+  top: 0; 
 }
 
 .right img {
@@ -122,22 +122,22 @@ form {
 }
 
 .custom-alert {
-  background-color: #ffebee; /* Fond rouge clair */
-  color: #c62828; /* Texte rouge foncé */
-  padding: 12px 20px; /* Espacement intérieur */
-  border-radius: 4px; /* Coins arrondis */
-  border: 1px solid #ffebee; /* Bordure rouge clair */
-  font-size: 0.9rem; /* Taille de police */
+  background-color: #ffebee; 
+  color: #c62828; 
+  padding: 12px 20px; 
+  border-radius: 4px; 
+  border: 1px solid #ffebee; 
+  font-size: 0.9rem; 
   display: flex;
   align-items: center;
-  gap: 10px; /* Espace entre l'icône et le texte */
-  margin-top: 10px; /* Marge en haut */
+  gap: 10px; 
+  margin-top: 10px; 
   width: 100%;
 }
 
 .custom-alert.error {
-  background-color: #ffcdd2; /* Fond rouge plus vif pour les erreurs */
-  color: #d32f2f; /* Texte rouge plus foncé */
-  border-color: #ffcdd2; /* Bordure rouge */
+  background-color: #ffcdd2; 
+  color: #d32f2f; 
+  border-color: #ffcdd2; 
   width: 100%;
 }

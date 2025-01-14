@@ -15,15 +15,14 @@ import { RatingService } from '../services/rating.service';
   styleUrl: './dish-rating.component.css',
 })
 export class DishRatingComponent {
-  searchQuery: string = ''; // Search query for filtering dishes
+  searchQuery: string = ''; 
 
-  // Sample dish data
   dishService = inject(DishService);
   ratingService = inject(RatingService);
   dishes: Dish[] = [];
 
   showFilter: boolean = false;
-  filterTypes: string[] = ['Main Course', 'Appetizers', 'Desserts']; // Available dish types
+  filterTypes: string[] = ['Main Course', 'Appetizers', 'Desserts']; 
   selectedTypes: string[] = [];
 
   get filteredDishes() {
@@ -33,10 +32,10 @@ export class DishRatingComponent {
     );
   }
   toggleFilter(): void {
-    this.showFilter = !this.showFilter; // Toggle filter checklist visibility
+    this.showFilter = !this.showFilter; 
   }
   ngOnInit(): void {
-    this.loadDishes(); // Charger les plats et leurs évaluations
+    this.loadDishes(); 
   }
 
   loadDishes(): void {
@@ -58,7 +57,7 @@ export class DishRatingComponent {
     this.dishes.forEach((dish) => {
       this.ratingService.getAverageRatingForDish(dish.id).subscribe(
         (averageRating: number) => {
-          dish.ratingAverage = averageRating; // Ajouter la moyenne des étoiles au plat
+          dish.ratingAverage = averageRating; 
         },
         (error) => {
           console.error('Error fetching rating for dish:', dish.id, error);
@@ -68,10 +67,8 @@ export class DishRatingComponent {
   }
   onTypeSelect(type: string): void {
     if (this.selectedTypes.includes(type)) {
-      // If the type is already selected, remove it
       this.selectedTypes = this.selectedTypes.filter(t => t !== type);
     } else {
-      // Otherwise, add it to the selected types
       this.selectedTypes.push(type);
     }
   }

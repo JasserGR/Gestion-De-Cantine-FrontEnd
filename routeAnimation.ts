@@ -11,9 +11,9 @@ export const routeTransitionAnimations = trigger('routeAnimations', [
         width: '100%',
         opacity: 0,
       }),
-    ], { optional: true }), // Make this query optional
+    ], { optional: true }), 
     query(':enter', [
       animate('0.3s ease-in', style({ opacity: 1 })),
-    ], { optional: true }), // Make this query optional
+    ], { optional: true }),
   ]),
 ]);

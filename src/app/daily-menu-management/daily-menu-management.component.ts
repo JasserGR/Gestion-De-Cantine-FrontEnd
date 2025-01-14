@@ -55,7 +55,7 @@ export class DailyMenuManagementComponent implements OnInit {
         })
       )
       .subscribe((data) => {
-        this.dailyDish = data; // Update dailyDish directly
+        this.dailyDish = data; 
       });
   }
 
@@ -82,7 +82,6 @@ export class DailyMenuManagementComponent implements OnInit {
     });
   }
 
-  // Getter to filter dishes based on search query and selected types
   get filteredDishes() {
     return this.dishes.filter((dish) => {
       const matchesSearch = dish.name.toLowerCase().includes(this.searchQuery.toLowerCase());
@@ -91,18 +90,14 @@ export class DailyMenuManagementComponent implements OnInit {
     });
   }
 
-  // Toggle filter visibility
   toggleFilter(): void {
     this.showFilter = !this.showFilter;
   }
 
-  // Handle type selection for filtering
   onTypeSelect(type: string): void {
     if (this.selectedTypes.includes(type)) {
-      // If the type is already selected, remove it
       this.selectedTypes = this.selectedTypes.filter((t) => t !== type);
     } else {
-      // Otherwise, add it to the selected types
       this.selectedTypes.push(type);
     }
   }

@@ -5,7 +5,6 @@
 body {
     font-family: 'Sora', sans-serif;
 }
-/* Ensure Material dialog is above other elements */
 .cdk-overlay-container {
     z-index: 2000 !important;
   }

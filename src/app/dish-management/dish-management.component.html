@@ -1,5 +1,4 @@
 <div class="dish-management">
-  <!-- Top Bar -->
   <div class="top-bar">
     <h1 class="page-title">Dishes Management</h1>
     <div class="search-filter-add">
@@ -20,7 +19,6 @@
     </div>
   </div>
 
-  <!-- Filter Bar (conditionally displayed) -->
   <div *ngIf="showFilter" class="filter-bar">
     <h3>Filter by Type:</h3>
     <div class="filter-options">
@@ -37,7 +35,6 @@
     </div>
   </div>
 
-  <!-- Dish Form (conditionally displayed) -->
   <div *ngIf="showForm" class="form-overlay">
     <div class="form-container">
       <form (ngSubmit)="onSaveDish()">
@@ -66,7 +63,6 @@
     </div>
   </div>
 
-  <!-- Dish Grid -->
   <div class="dish-grid">
     <app-dish-card
       *ngFor="let dish of filteredDishes"

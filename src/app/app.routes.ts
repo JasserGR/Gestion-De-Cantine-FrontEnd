@@ -7,38 +7,38 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { HomeComponent } from './home/home.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' }, // Default route
+  { path: '', redirectTo: '/login', pathMatch: 'full' }, 
   { 
     path: 'login', 
     component: LoginComponent,
-    data: { animation: 'LoginPage' } // Add animation data
+    data: { animation: 'LoginPage' } 
   }, 
   { 
     path: 'dish-management', 
     component: DishManagementComponent,
-    data: { animation: 'DishManagementPage' } // Add animation data
+    data: { animation: 'DishManagementPage' } 
   },
   { 
     path: 'daily-menu-management', 
     component: DailyMenuManagementComponent,
-    data: { animation: 'DailyMenuManagementPage' } // Add animation data
+    data: { animation: 'DailyMenuManagementPage' } 
   },
   { 
     path: 'dish-rating', 
     component: DishRatingComponent,
-    data: { animation: 'DishRatingPage' } // Add animation data
+    data: { animation: 'DishRatingPage' } 
   },
   { 
     path: 'about-us', 
     component: AboutUsComponent,
-    data: { animation: 'AboutUsPage' } // Add animation data
+    data: { animation: 'AboutUsPage' } 
   },
   { 
     path: 'home', 
     component: HomeComponent,
-    data: { animation: 'HomePage' } // Add animation data
+    data: { animation: 'HomePage' } 
   },
-  { path: '**', redirectTo: '/login' } // Wildcard route for 404
+  { path: '**', redirectTo: '/login' } 
 ];
 
 export const AppRoutes = RouterModule.forRoot(routes);

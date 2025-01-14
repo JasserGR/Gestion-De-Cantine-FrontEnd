@@ -2,15 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet, NavigationEnd, Router, RouterModule } from '@angular/router';
 import { SidebarComponent } from "./sidebar/sidebar.component";
-import { routeTransitionAnimations } from '../../routeAnimation'; // Import your animations
-
+import { routeTransitionAnimations } from '../../routeAnimation'; 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, SidebarComponent, CommonModule, RouterModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
-  animations: [routeTransitionAnimations], // Add your animations here
+  animations: [routeTransitionAnimations], 
 })
 export class AppComponent implements OnInit {
   title = 'Gestion De Cantine';

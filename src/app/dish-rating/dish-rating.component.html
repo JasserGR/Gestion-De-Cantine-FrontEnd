@@ -1,5 +1,4 @@
 <div class="dish-management">
-  <!-- Title and Top Bar -->
   <div class="top-bar">
     <h1 class="page-title">Dishes Rating</h1>
     <div class="search-filter-add">
@@ -17,8 +16,6 @@
       </div>
     </div>
   </div>
-
- <!-- Filter Bar (conditionally displayed) -->
  <div *ngIf="showFilter" class="filter-bar">
   <h3>Filter by Type:</h3>
   <div class="filter-options">
@@ -34,11 +31,10 @@
     </div>
   </div>
 </div>
-
-  <!-- Dish Grid -->
   <div class="dish-grid">
     <app-dish-card
       *ngFor="let dish of filteredDishes"
+      [id]="dish.id"
       [imageUrl]="dish.imageUrl"
       [type]="dish.type"
       [name]="dish.name"

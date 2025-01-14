@@ -39,7 +39,6 @@ export class DishRatingComponent {
     this.loadDishes(); // Charger les plats et leurs évaluations
   }
 
-  // Méthode pour charger les plats et leurs évaluations
   loadDishes(): void {
     this.dishService
       .getDishes()
@@ -50,12 +49,11 @@ export class DishRatingComponent {
         })
       )
       .subscribe((data) => {
-        this.dishes = data; // Stocker les plats récupérés
-        this.loadRatings(); // Charger les évaluations pour chaque plat
+        this.dishes = data; 
+        this.loadRatings(); 
       });
   }
 
-  // Méthode pour charger les évaluations (moyenne des étoiles) pour chaque plat
   loadRatings(): void {
     this.dishes.forEach((dish) => {
       this.ratingService.getAverageRatingForDish(dish.id).subscribe(

@@ -1,7 +1,8 @@
 /* Main content */
 .main-content {
-    padding: 2rem;
-    transition: margin-left 0.3s ease;
+  margin-left: 250px; 
+  padding: 1rem;
+      transition: margin-left 0.3s ease;
   }
   
   

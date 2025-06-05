@@ -13,7 +13,7 @@ GestionDeCantine is a user-friendly platform designed to streamline daily menu m
 ## Technologies Used
 
 - **Frontend**: Angular, TypeScript, HTML, CSS
-- **Backend**: Node.js, Express (Assumed based on typical stack)
+- **Backend**: Nest Js
 - **Database**: MongoDB (Assumed based on typical stack)
 - **Authentication**: JWT (JSON Web Tokens)
 
